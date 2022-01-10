@@ -39,4 +39,5 @@ class TestC(TestCase):
         data = json.load(open('./elsys/posts.json'))
         mocked_requests.return_value.json = Mock(return_value=data)
         response = ApiProcessor().post_with_longest_title()
-        assert response['id'] == 50
+        print(response)
+        assert response['id'] == 58
