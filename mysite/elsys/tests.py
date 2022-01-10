@@ -26,9 +26,17 @@ from elsys.processors.api_processor import ApiProcessor
 import json
 
 class TestC(TestCase):
+
     @patch("requests.get")
-    def test_call_api(self, mocked_requests):
+    def test_api_longest_comment(self, mocked_requests):
         data = json.load(open('./elsys/comments.json'))
         mocked_requests.return_value.json = Mock(return_value = data)
         response = ApiProcessor().longest_comment()
         assert response['id'] == 3
+
+    @patch("requests.get")
+    def test_api_longest_title(self, mocked_requests):
+        data = json.load(open('./elsys/posts.json'))
+        mocked_requests.return_value.json = Mock(return_value=data)
+        response = ApiProcessor().post_with_longest_title()
+        assert response['id'] == 50
